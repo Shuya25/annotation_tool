@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Annotation!</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<header>
+  {% from "_formhelpers.html" import render_field %}
+  <p>
+    <span>Name: {{ forms['name'] }}</span>&emsp;
+    <span>Output csv: {{ forms['out_csv'] }}</span>
+  </p>
+</header>
+
+<button id="prev_button" type="button" onclick="location.href='/annotation/pre'">Prev</button>
+
+<body id="body2">
+  <div class="image_area">
+  <form method=post action="/annotation/next">
+    {% for i in range(forms['num']) %}
+    <div>
+      <p>id: {{ i+forms['index'] }}&emsp;{{ forms['paths'][i+forms['index']] }}</p>
+      <!-- <img src="https://drive.google.com/drive/u/0/folders/1UUeoODjVitqdIRb9TOlX5bxkbR3jlaj7/{{ path }}" alt="image"> -->
+      <img src="data:image/jpeg;base64,{{ forms['images'][i] }}" alt="image">
+    </div>
+    {% endfor %}
+  </div>
+  <div class="input_area">
+    <p>
+      <label for="name">使えるかどうかのラベル:</label>
+      <input type="text" id="label1" name="label1" value="{{ forms['label'] }}" autofocus>
+    </p>
+    <input id="btn_next" type=submit value='Next' name='submit_btn'>
+  </div>
+  </form>
+
+</body>
+
+</html>

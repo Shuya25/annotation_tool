@@ -1,0 +1,42 @@
+.image_area {
+  text-align: center;
+  padding-left: 5%;
+  height: 600px;
+  width: 90%;
+  overflow-y: scroll;
+}
+
+.input_area {
+  text-align: center;
+}
+
+#btn_next {
+  height: 200px;
+  width: 200px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+#body1 {
+  padding-top: 10%;
+  text-align: center;
+}
+
+header {
+  padding-top: 1%;
+  padding-left: 3%;
+  text-align: left;
+}
+
+span {
+  font-size: large;
+}
+
+#prev_button {
+  width: 5%;
+  /* padding: 10px; */
+  box-sizing: border-box;
+  /* border: 1px solid #68779a; */
+  /* background: lightgray; */
+  cursor: pointer;
+}

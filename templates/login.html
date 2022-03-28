@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Annotation!</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body id="body1">
+  <form method=post action="/annotation">
+    <p><label for="name">Name</label></p>
+    <p><input type="text" id="name" name="name" required></p>
+    <p><label for="index">Start Index</label></p>
+    <p><input type="text" id="index" name="index" placeholder='0' required pattern="\d"></p>
+    <p><input type=submit value='Submit' name='submit_btn'></p>
+  </form>
+</body>
+
+</html>
