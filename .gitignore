@@ -1,2 +1,6 @@
+# csv file
 *.csv
 !data.csv
+
+# python version file
+.python-version
