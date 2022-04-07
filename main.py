@@ -7,11 +7,10 @@ from flask import Flask, render_template, request, url_for
 ROOT = '.'
 INPUT_CSV = ROOT + '/data.csv'
 DF = pd.read_csv(INPUT_CSV, index_col=0)
-UPDATE_COL = set([1])
-COL_NAME = {1: "label"}
-for i in UPDATE_COL:
-  DF[COL_NAME[i]] = -1
-print(DF)
+END = len(DF)
+UPDATE_COL = {1: "label"}
+for col in UPDATE_COL:
+  DF[col] = -1
 
 
 app = Flask(__name__)
@@ -37,7 +36,7 @@ def forms_update(start):
     forms['label'] = "".join(labels)
   else:
     forms['label'] = ''
-  return 0
+
 
 def csv_update(start, labels):
   global forms
@@ -46,9 +45,10 @@ def csv_update(start, labels):
       if l == '0' or l == '1':
         DF.iloc[start+i, u] = l
       else:
-        return 1
+        return 0
   DF.to_csv(forms['out_csv'])
-  return 0
+  return 1
+
 
 @app.route('/')
 def login():
@@ -77,17 +77,18 @@ def annotation_next():
   global forms
   if request.method == "GET":
     return render_template('annotation.html', forms=forms)
-    
+
   elif request.method == "POST":
     label1 = request.form['label1']
     if len(label1) != forms['num']:
       return render_template('annotation.html', forms=forms)
 
     start = forms['index']
-    if csv_update(start, label1):
+    if not csv_update(start, label1):
       return render_template('annotation.html', forms=forms)
 
     start += forms['num']
+    if start + forms['num'] > END: start = END - forms['num']
     forms_update(start)
     return render_template('annotation.html', forms=forms)
 
