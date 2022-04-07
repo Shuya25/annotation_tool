@@ -77,6 +77,7 @@ def annotation_next():
   global forms
   if request.method == "GET":
     return render_template('annotation.html', forms=forms)
+    
   elif request.method == "POST":
     label1 = request.form['label1']
     if len(label1) != forms['num']:

@@ -1,6 +1,7 @@
-# csv file
+# csv
 *.csv
 !data.csv
 
-# python version file
-.python-version
+# dot files
+.*
+!.gitignore
